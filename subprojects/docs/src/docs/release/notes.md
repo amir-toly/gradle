@@ -41,8 +41,7 @@ details of 2
 -->
 
 ## Improved handling of ZIP archives on runtime classpaths
-Runtime classpath analysis can now inspect manifest and `META-INF` properties files, ignore changes to comments, and selectively ignore attributes or properties that don't impact the 
-runtime classpath.
+Runtime classpath analysis can now inspect manifest and `META-INF` properties files, ignore changes to comments, and selectively ignore attributes or properties that don't impact the runtime classpath.
    
 ```groovy
 normalization {
