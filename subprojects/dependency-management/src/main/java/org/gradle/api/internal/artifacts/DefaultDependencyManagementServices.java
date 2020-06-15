@@ -486,7 +486,7 @@ public class DefaultDependencyManagementServices implements DependencyManagement
 
         ConfigurationContainerInternal createConfigurationContainer(Instantiator instantiator,
                                                                     ConfigurationResolver configurationResolver, DomainObjectContext domainObjectContext,
-                                                                    ListenerManager listenerManager, DependencyMetaDataProvider metaDataProvider, ProjectAccessListener projectAccessListener,
+                                                                    ListenerManager listenerManager, DependencyMetaDataProvider metaDataProvider,
                                                                     LocalComponentMetadataBuilder metaDataBuilder, FileCollectionFactory fileCollectionFactory,
                                                                     GlobalDependencyResolutionRules globalDependencyResolutionRules, VcsMappingsStore vcsMappingsStore, ComponentIdentifierFactory componentIdentifierFactory,
                                                                     BuildOperationExecutor buildOperationExecutor, ImmutableAttributesFactory attributesFactory,
@@ -504,7 +504,7 @@ public class DefaultDependencyManagementServices implements DependencyManagement
                 domainObjectContext,
                 listenerManager,
                 metaDataProvider,
-                projectAccessListener,
+                listenerManager.getBroadcaster(ProjectAccessListener.class),
                 metaDataBuilder,
                 fileCollectionFactory,
                 globalDependencyResolutionRules.getDependencySubstitutionRules(),

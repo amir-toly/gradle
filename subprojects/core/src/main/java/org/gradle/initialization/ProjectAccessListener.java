@@ -17,8 +17,11 @@
 package org.gradle.initialization;
 
 import org.gradle.api.internal.project.ProjectInternal;
+import org.gradle.internal.service.scopes.EventScope;
+import org.gradle.internal.service.scopes.Scopes;
 
 
+@EventScope(Scopes.Build)
 public interface ProjectAccessListener {
 
     void beforeRequestingTaskByPath(ProjectInternal targetProject);

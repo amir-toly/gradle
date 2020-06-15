@@ -215,6 +215,17 @@ public class BuildScopeServices extends DefaultServiceRegistry {
         });
     }
 
+    protected BuildScopeListenerManagerAction createProjectAccessListenerRegistrationAction(ListenerManager listenerManager, List<ProjectAccessListener> listeners) {
+        return new BuildScopeListenerManagerAction() {
+            @Override
+            public void execute(ListenerManager listenerManager) {
+                for (ProjectAccessListener projectAccessListener : listeners) {
+                    listenerManager.addListener(projectAccessListener);
+                }
+            }
+        };
+    }
+
     protected BuildLayout createBuildLayout(BuildLayoutFactory buildLayoutFactory, StartParameter startParameter) {
         return buildLayoutFactory.getLayoutFor(new BuildLayoutConfiguration(startParameter));
     }

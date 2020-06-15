@@ -205,7 +205,7 @@ class DependencyManagementBuildScopeServices {
 
     DependencyFactory createDependencyFactory(
         Instantiator instantiator,
-        ProjectAccessListener projectAccessListener,
+        ListenerManager listenerManager,
         StartParameter startParameter,
         ClassPathRegistry classPathRegistry,
         CurrentGradleInstallation currentGradleInstallation,
@@ -215,7 +215,7 @@ class DependencyManagementBuildScopeServices {
         SimpleMapInterner stringInterner) {
         NotationParser<Object, Capability> capabilityNotationParser = new CapabilityNotationParserFactory(false).create();
         DefaultProjectDependencyFactory factory = new DefaultProjectDependencyFactory(
-            projectAccessListener, instantiator, startParameter.isBuildProjectDependencies(), capabilityNotationParser, attributesFactory);
+            listenerManager.getBroadcaster(ProjectAccessListener.class), instantiator, startParameter.isBuildProjectDependencies(), capabilityNotationParser, attributesFactory);
         ProjectDependencyFactory projectDependencyFactory = new ProjectDependencyFactory(factory);
 
         return new DefaultDependencyFactory(

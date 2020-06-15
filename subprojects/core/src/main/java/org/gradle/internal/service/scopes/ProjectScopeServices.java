@@ -73,6 +73,7 @@ import org.gradle.configuration.project.ProjectConfigurationActionContainer;
 import org.gradle.initialization.ProjectAccessListener;
 import org.gradle.internal.Factory;
 import org.gradle.internal.build.BuildStateRegistry;
+import org.gradle.internal.event.ListenerManager;
 import org.gradle.internal.file.PathToFileResolver;
 import org.gradle.internal.instantiation.InstantiatorFactory;
 import org.gradle.internal.jvm.JavaModuleDetector;
@@ -199,7 +200,7 @@ public class ProjectScopeServices extends DefaultServiceRegistry {
             get(Instantiator.class),
             get(ITaskFactory.class),
             project,
-            get(ProjectAccessListener.class),
+            get(ListenerManager.class).getBroadcaster(ProjectAccessListener.class),
             taskStatistics,
             buildOperationExecutor,
             crossProjectConfigurator,
