@@ -211,11 +211,12 @@ class DependencyManagementBuildScopeServices {
         CurrentGradleInstallation currentGradleInstallation,
         FileCollectionFactory fileCollectionFactory,
         RuntimeShadedJarFactory runtimeShadedJarFactory,
+        ProjectAccessListener projectAccessListener,
         ImmutableAttributesFactory attributesFactory,
         SimpleMapInterner stringInterner) {
         NotationParser<Object, Capability> capabilityNotationParser = new CapabilityNotationParserFactory(false).create();
         DefaultProjectDependencyFactory factory = new DefaultProjectDependencyFactory(
-            listenerManager.getBroadcaster(ProjectAccessListener.class), instantiator, startParameter.isBuildProjectDependencies(), capabilityNotationParser, attributesFactory);
+            projectAccessListener, instantiator, startParameter.isBuildProjectDependencies(), capabilityNotationParser, attributesFactory);
         ProjectDependencyFactory projectDependencyFactory = new ProjectDependencyFactory(factory);
 
         return new DefaultDependencyFactory(

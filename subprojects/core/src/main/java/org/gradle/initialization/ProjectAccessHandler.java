@@ -19,7 +19,7 @@ package org.gradle.initialization;
 import org.gradle.api.internal.project.ProjectInternal;
 
 
-public interface ProjectAccessListener {
+public interface ProjectAccessHandler {
 
     void beforeRequestingTaskByPath(ProjectInternal targetProject);
 

@@ -18,12 +18,12 @@ package org.gradle.instantexecution
 
 import org.gradle.api.internal.project.ProjectInternal
 import org.gradle.execution.plan.Node
-import org.gradle.initialization.ProjectAccessListener
+import org.gradle.initialization.ProjectAccessHandler
 import org.gradle.internal.service.scopes.Scopes
 import org.gradle.internal.service.scopes.ServiceScope
 
 @ServiceScope(Scopes.Build)
-class RelevantProjectsRegistry : ProjectAccessListener {
+class RelevantProjectsRegistry : ProjectAccessHandler {
     private val targetProjects = mutableSetOf<ProjectInternal>()
 
     fun relevantProjects(nodes: List<Node>): List<ProjectInternal> {

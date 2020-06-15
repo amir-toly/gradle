@@ -200,7 +200,7 @@ public class ProjectScopeServices extends DefaultServiceRegistry {
             get(Instantiator.class),
             get(ITaskFactory.class),
             project,
-            get(ListenerManager.class).getBroadcaster(ProjectAccessListener.class),
+            get(ProjectAccessListener.class),
             taskStatistics,
             buildOperationExecutor,
             crossProjectConfigurator,
