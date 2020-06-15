@@ -29,7 +29,6 @@ import org.gradle.tooling.internal.provider.TestExecutionRequestAction
 import org.gradle.tooling.internal.provider.serialization.SerializedPayload
 import spock.lang.Unroll
 
-@Unroll
 class BuildActionSerializerTest extends SerializerSpec {
     def "serializes ExecuteBuildAction with all defaults"() {
         def action = new ExecuteBuildAction(new StartParameterInternal())
@@ -50,6 +49,7 @@ class BuildActionSerializerTest extends SerializerSpec {
         result.startParameter.taskNames == ['a', 'b']
     }
 
+    @Unroll
     def "serializes #buildOptionName boolean build option"() {
         def startParameter = new StartParameterInternal()
         boolean expectedValue = !startParameter."${buildOptionName}"
@@ -85,7 +85,8 @@ class BuildActionSerializerTest extends SerializerSpec {
         ]
     }
 
-    def "serializes other actions"() {
+    @Unroll
+    def "serializes other actions #action.class"() {
         expect:
         def result = serialize(action, BuildActionSerializer.create())
         result.class == action.class
