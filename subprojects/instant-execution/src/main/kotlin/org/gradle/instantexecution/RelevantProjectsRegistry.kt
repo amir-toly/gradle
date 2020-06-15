@@ -22,9 +22,11 @@ import org.gradle.initialization.ProjectAccessHandler
 import org.gradle.internal.service.scopes.Scopes
 import org.gradle.internal.service.scopes.ServiceScope
 
+
 @ServiceScope(Scopes.Build)
 class RelevantProjectsRegistry : ProjectAccessHandler {
-    private val targetProjects = mutableSetOf<ProjectInternal>()
+    private
+    val targetProjects = mutableSetOf<ProjectInternal>()
 
     fun relevantProjects(nodes: List<Node>): List<ProjectInternal> {
         return (targetProjects + nodes.mapNotNullTo(mutableListOf()) { node ->
