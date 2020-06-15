@@ -17,11 +17,14 @@ package org.gradle.groovy
 
 import org.gradle.api.JavaVersion
 import org.gradle.integtests.fixtures.AbstractDependencyResolutionTest
+import org.gradle.integtests.fixtures.executer.GradleContextualExecuter
 import org.gradle.integtests.fixtures.resolve.ResolveTestFixture
 import org.gradle.test.fixtures.archive.JarTestFixture
+import spock.lang.IgnoreIf
 import spock.lang.Issue
 import spock.lang.Unroll
 
+@IgnoreIf({ GradleContextualExecuter.vfsRetention })
 class GroovyJavaLibraryInteractionIntegrationTest extends AbstractDependencyResolutionTest {
 
     ResolveTestFixture resolve

@@ -20,9 +20,12 @@ import org.gradle.integtests.fixtures.GradleMetadataResolveRunner
 import org.gradle.integtests.fixtures.RequiredFeature
 import org.gradle.integtests.fixtures.ToBeFixedForInstantExecution
 import org.gradle.integtests.resolve.AbstractModuleDependencyResolveTest
+import org.gradle.integtests.fixtures.executer.GradleContextualExecuter
+import spock.lang.IgnoreIf
 import spock.lang.Issue
 import spock.lang.Unroll
 
+@IgnoreIf({ GradleContextualExecuter.vfsRetention })
 class DependenciesAttributesIntegrationTest extends AbstractModuleDependencyResolveTest {
 
     def setup() {

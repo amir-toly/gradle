@@ -22,6 +22,8 @@ import org.gradle.integtests.fixtures.UnsupportedWithInstantExecution
 import org.gradle.security.fixtures.KeyServer
 import org.gradle.security.fixtures.SigningFixtures
 import org.gradle.security.internal.Fingerprint
+import org.gradle.integtests.fixtures.executer.GradleContextualExecuter
+import spock.lang.IgnoreIf
 import spock.lang.Unroll
 
 import static org.gradle.security.fixtures.SigningFixtures.getValidPublicKeyLongIdHexString
@@ -29,6 +31,7 @@ import static org.gradle.security.fixtures.SigningFixtures.signAsciiArmored
 import static org.gradle.security.fixtures.SigningFixtures.validPublicKeyHexString
 import static org.gradle.security.internal.SecuritySupport.toLongIdHexString
 
+@IgnoreIf({ GradleContextualExecuter.vfsRetention })
 class DependencyVerificationSignatureCheckIntegTest extends AbstractSignatureVerificationIntegrationTest {
 
     def "doesn't need checksums if signature is verified"() {

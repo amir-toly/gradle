@@ -18,7 +18,10 @@ package org.gradle.internal.logging.console.taskgrouping.rich
 
 import org.gradle.api.logging.configuration.ConsoleOutput
 import org.gradle.internal.logging.console.taskgrouping.AbstractConsoleCompositeBuildGroupedTaskFunctionalTest
+import org.gradle.integtests.fixtures.executer.GradleContextualExecuter
+import spock.lang.IgnoreIf
 
+@IgnoreIf({ GradleContextualExecuter.vfsRetention })
 class RichConsoleCompositeBuildGroupedTaskFunctionalTest extends AbstractConsoleCompositeBuildGroupedTaskFunctionalTest {
     ConsoleOutput consoleType = ConsoleOutput.Rich
 }
