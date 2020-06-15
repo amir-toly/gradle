@@ -20,6 +20,7 @@ import org.apache.commons.io.FileUtils
 import org.gradle.cache.internal.DefaultGeneratedGradleJarCache
 import org.gradle.initialization.StartParameterBuildOptions.ConfigurationCacheMaxProblemsOption
 import org.gradle.initialization.StartParameterBuildOptions.ConfigurationCacheOption
+import org.gradle.initialization.StartParameterBuildOptions.ConfigurationCacheProblemsOption
 import org.gradle.initialization.StartParameterBuildOptions.ConfigurationCacheQuietOption
 import org.gradle.integtests.fixtures.instantexecution.InstantExecutionBuildOperationsFixture
 import org.gradle.integtests.fixtures.BuildOperationTreeFixture
@@ -47,6 +48,7 @@ abstract class AbstractSmokeTest extends Specification {
     protected static final String AGP_3_ITERATION_MATCHER = ".*agp=3\\..*"
     protected static final String AGP_4_0_ITERATION_MATCHER = ".*agp=4\\.0\\..*"
     protected static final String AGP_4_1_ITERATION_MATCHER = ".*agp=4\\.1\\..*"
+    protected static final String AGP_4_2_ITERATION_MATCHER = ".*agp=4\\.2\\..*"
 
     static class TestedVersions {
         /**
@@ -117,7 +119,7 @@ abstract class AbstractSmokeTest extends Specification {
         static playframework = "0.9"
 
         // https://plugins.gradle.org/plugin/net.ltgt.errorprone
-        static errorProne = "1.1.1"
+        static errorProne = "1.2.1"
 
         // https://plugins.gradle.org/plugin/com.google.protobuf
         static protobufPlugin = "0.8.12"
@@ -202,16 +204,15 @@ abstract class AbstractSmokeTest extends Specification {
         List<String> parameters = []
         if (GradleContextualExecuter.isInstant()) {
             def maxProblems = maxInstantExecutionProblems()
-            if (maxProblems == 0) {
-                parameters += ["--${ConfigurationCacheOption.LONG_OPTION}=on".toString()]
-            } else {
-                parameters += ["--${ConfigurationCacheOption.LONG_OPTION}=warn".toString(),]
-            }
             parameters += [
+                "--${ConfigurationCacheOption.LONG_OPTION}".toString(),
                 "-D${ConfigurationCacheMaxProblemsOption.PROPERTY_NAME}=$maxProblems".toString(),
                 "-D${ConfigurationCacheQuietOption.PROPERTY_NAME}=true".toString(),
                 "-D${BuildOperationTrace.SYSPROP}=${buildOperationTracePath()}".toString()
             ]
+            if (maxProblems > 0) {
+                parameters += ["--${ConfigurationCacheProblemsOption.LONG_OPTION}=warn".toString(),]
+            }
         }
         return parameters
     }
